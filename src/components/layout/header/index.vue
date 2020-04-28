@@ -17,9 +17,11 @@ export default {
 header {
   width: 100vw;
   background-color: #333333;
+  top: 0;
+  position: fixed;
 
   .title {
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 800;
     color: #fff;
   }

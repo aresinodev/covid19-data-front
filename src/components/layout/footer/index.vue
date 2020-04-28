@@ -16,5 +16,6 @@ footer {
   position: fixed;
   width: 100vw;
   border-top: 1px solid #d8d8d8;
+  background-color: #ffffff;
 }
 </style>
