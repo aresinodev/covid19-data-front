@@ -21,7 +21,7 @@ header {
   position: fixed;
 
   .title {
-    font-size: 25px;
+    font-size: 22px;
     font-weight: 800;
     color: #fff;
   }

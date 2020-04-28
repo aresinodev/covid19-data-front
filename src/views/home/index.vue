@@ -1,8 +1,11 @@
 <template>
   <div class="home conatiner">
-    <Browser />
+    <Browser @searchCountriesByTerm="searchCountriesByTerm" />
     <Loader :loading="loading" />
-    <CountryCardList :countries="countries" v-if="!loading" />
+    <CountryCardList :countries="countries" v-if="countries.length > 0" />
+    <span v-if="countries.length === 0" class="home__no-countries">
+      No hay países
+    </span>
   </div>
 </template>
 
@@ -32,18 +35,54 @@ export default {
   },
   methods: {
     async loadCountries() {
+      this.loading = true
       try {
         const response = await axios.get(`${URL_API_DEV}countries/all`)
         this.countries = response.data.countries
-        setTimeout(() => {
-          this.loading = false
-        }, 5000)
+        this.loading = false
       } catch (error) {
         this.$swal({
           title: 'Error',
           icon: 'error',
           text: 'Error al obtener los países de la base de datos'
         })
+      }
+    },
+    async searchCountriesByTerm(value) {
+      this.loading = true
+
+      if (value !== '') {
+        try {
+          const response = await axios.get(
+            `${URL_API_DEV}countries/all/${value}`
+          )
+
+          console.log('Respuesta', response)
+
+          if (
+            response &&
+            response.data &&
+            response.data.countries &&
+            response.data.countries.length > 0
+          ) {
+            this.countries = response.data.countries
+            this.loading = false
+          } else {
+            this.countries = []
+            console.log('Longitud', this.countries.length)
+            this.loading = false
+          }
+        } catch (error) {
+          this.loading = false
+          this.$swal({
+            title: 'Error',
+            icon: 'error',
+            text: 'Error al obtener los países de la base de datos'
+          })
+        }
+      } else {
+        this.loading = false
+        this.loadCountries()
       }
     }
   }
@@ -53,5 +92,12 @@ export default {
 <style lang="scss">
 .home {
   width: 100vw;
+
+  &__no-countries {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 800;
+  }
 }
 </style>
