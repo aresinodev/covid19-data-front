@@ -53,13 +53,12 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 20rem;
-  height: 12rem;
   border: 1px solid #d8d8d8;
-  margin-top: 10px;
+  width: 95%;
+  justify-self: center;
 
   &__name {
-    font-size: 30px;
+    font-size: 22px;
     font-weight: 800;
     text-transform: uppercase;
     width: 100%;
@@ -81,7 +80,7 @@ export default {
       width: 100%;
 
       &__title {
-        font-size: 14px;
+        font-size: 12px;
         font-weight: 800;
         text-transform: uppercase;
       }

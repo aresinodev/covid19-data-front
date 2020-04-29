@@ -1,5 +1,5 @@
 <template>
-  <div class="browser-container p-2">
+  <div class="browser-container container p-2">
     <input
       @keypress.enter="searchCountriesByTerm"
       id="textToSearch"

@@ -1,5 +1,5 @@
 <template>
-  <div class="home conatiner">
+  <div class="home">
     <Browser @searchCountriesByTerm="searchCountriesByTerm" />
     <Loader :loading="loading" />
     <CountryCardList :countries="countries" v-if="countries.length > 0" />
@@ -92,6 +92,11 @@ export default {
 <style lang="scss">
 .home {
   width: 100vw;
+  height: calc(100vh - 122px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 
   &__no-countries {
     display: flex;

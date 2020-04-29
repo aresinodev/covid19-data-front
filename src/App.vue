@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <Header />
-    <router-view style="margin-top: 85px;" />
+    <div class="content">
+      <router-view />
+    </div>
     <Footer />
   </div>
 </template>
@@ -21,6 +23,9 @@ export default {
 
 <style lang="scss">
 #app {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100vw;
   height: 100vh;
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -29,5 +34,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   overflow: hidden;
+}
+
+.content {
+  width: 100vw;
+  height: calc(100vh - 122px);
 }
 </style>

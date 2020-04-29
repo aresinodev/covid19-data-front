@@ -18,7 +18,6 @@ header {
   width: 100vw;
   background-color: #333333;
   top: 0;
-  position: fixed;
 
   .title {
     font-size: 22px;
