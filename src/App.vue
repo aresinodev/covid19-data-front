@@ -39,5 +39,9 @@ export default {
 .content {
   width: 100vw;
   height: calc(100vh - 122px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 </style>

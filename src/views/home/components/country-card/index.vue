@@ -1,39 +1,16 @@
 <template>
-  <div
-    class="country-card-container border-solid rounded
-    border-gray-400"
-  >
-    <div class="country-card-container__name">
-      {{ country.name }}
-    </div>
-
-    <div class="country-card-container__data">
-      <div
-        class="data"
-        style="border-top: 1px solid #d8d8d8; border-right: 1px solid #d8d8d8;"
-      >
-        <span class="data__title">
-          CONFIRMADOS
-        </span>
-        <span class="data__quantity">{{ country.totalConfirmed }}</span>
-      </div>
-
-      <div
-        class="data"
-        style="border-top: 1px solid #d8d8d8; border-right: 1px solid #d8d8d8;"
-      >
-        <span class="data__title">
-          FALLECIDOS
-        </span>
-        <span class="data__quantity">{{ country.totalDeaths }}</span>
-      </div>
-
-      <div class="data" style="border-top: 1px solid #d8d8d8;">
-        <span class="data__title">RECUPERADOS</span>
-        <span class="data__quantity">{{ country.totalRecovered }}</span>
-      </div>
-    </div>
-  </div>
+  <tr>
+    <td class="border px-4 py-2">{{ country.name }}</td>
+    <td class="border px-4 py-2">
+      {{ country.totalConfirmed | formatNumber(null, false) }}
+    </td>
+    <td class="border px-4 py-2">
+      {{ country.totalDeaths | formatNumber(null, false) }}
+    </td>
+    <td class="border px-4 py-2">
+      {{ country.totalRecovered | formatNumber(null, false) }}
+    </td>
+  </tr>
 </template>
 
 <script>
@@ -44,52 +21,24 @@ export default {
       type: Object,
       required: true
     }
-  }
-}
-</script>
+  },
+  filters: {
+    formatNumber: function(value, decimals, euro) {
+      if (value) {
+        const string = decimals ? value.toFixed(decimals) : value.toString()
+        const x = string.split('.')
+        let x1 = x[0]
+        const x2 = x.length > 1 ? ',' + x[1] : ''
+        const rgx = /(\d+)(\d{3})/
+        while (rgx.test(x1)) {
+          x1 = x1.replace(rgx, '$1' + '.' + '$2')
+        }
 
-<style lang="scss">
-.country-card-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border: 1px solid #d8d8d8;
-  width: 95%;
-  justify-self: center;
-
-  &__name {
-    font-size: 22px;
-    font-weight: 800;
-    text-transform: uppercase;
-    width: 100%;
-    height: 50%;
-  }
-
-  &__data {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    width: 100%;
-    height: 50%;
-
-    .data {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-
-      &__title {
-        font-size: 12px;
-        font-weight: 800;
-        text-transform: uppercase;
-      }
-
-      &__quantity {
-        font-size: 14px;
-        font-weight: 500;
+        return x1 + (!decimals ? '' : x2) + (euro ? '€' : '')
+      } else {
+        return '0' + (!decimals ? '' : ',00') + (euro ? '€' : '')
       }
     }
   }
 }
-</style>
+</script>

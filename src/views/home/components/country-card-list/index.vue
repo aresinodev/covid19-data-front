@@ -1,14 +1,24 @@
 <template>
-  <div
-    class="grid grid-flow-row grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3
-    xl:grid-cols-4 xl:grid-rows-3 lg:grid-rows-4 md:grid-rows-4 sm:grid-rows-4 container
-    gap-2 country-card-list-container"
-  >
-    <CountryCard
-      v-for="(country, index) in countries"
-      :country="country"
-      :key="index"
-    />
+  <div class="country-card-list-container">
+    <table
+      class="table-auto mx-4 text-xs sm:text-base md:text-base lg:text-base xl:text-base"
+    >
+      <thead>
+        <tr>
+          <th class="px-4 py-2">País</th>
+          <th class="px-4 py-2">Confirmados</th>
+          <th class="px-4 py-2">Fallecidos</th>
+          <th class="px-4 py-2">Recuperados</th>
+        </tr>
+      </thead>
+      <tbody>
+        <CountryCard
+          v-for="(country, $index) in countries"
+          :key="$index"
+          :country="country"
+        />
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -28,12 +38,10 @@ export default {
 
 <style lang="scss">
 .country-card-list-container {
-  width: 100vw;
   height: calc(100vh - 178px);
   overflow-x: hidden;
   overflow-y: auto;
   max-height: calc(100vh - 178px);
-  margin-bottom: 10px;
 }
 
 .country-card-list-container::-webkit-scrollbar {

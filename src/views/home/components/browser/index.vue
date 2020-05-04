@@ -3,7 +3,8 @@
     <input
       @keypress.enter="searchCountriesByTerm"
       id="textToSearch"
-      type="text"
+      type="search"
+      @search="onSearchInput($event)"
       class="w-1/2 lg:w-2/5 xl:w-2/5 md:w-2/5 shadow appearance-none border rounded py-2 px-3 
       text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
     />
@@ -26,6 +27,14 @@ export default {
         'searchCountriesByTerm',
         document.querySelector('#textToSearch').value
       )
+    },
+    onSearchInput(event) {
+      if (event.target.value === '') {
+        this.$emit(
+          'searchCountriesByTerm',
+          document.querySelector('#textToSearch').value
+        )
+      }
     }
   }
 }

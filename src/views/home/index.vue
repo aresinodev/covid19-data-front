@@ -91,7 +91,7 @@ export default {
 
 <style lang="scss">
 .home {
-  width: 100vw;
+  // width: 100vw;
   height: calc(100vh - 122px);
   display: flex;
   flex-direction: column;
