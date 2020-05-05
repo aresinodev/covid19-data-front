@@ -1,5 +1,5 @@
 import { ROUTES } from '@/constants/routes'
 
-const URL_API = process.env.URL_API || 'http://192.168.1.75:3000/'
+const URL_API = process.env.URL_API
 
 export { ROUTES, URL_API }
