@@ -3,10 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "vue-build": "vue-cli-service build --mode production",
-    "lint": "vue-cli-service lint --no-fix",
-    "lint:fix": "vue-cli-service lint",
+    "postinstall": "npm run build",
     "start": "node server.js"
   },
   "dependencies": {
