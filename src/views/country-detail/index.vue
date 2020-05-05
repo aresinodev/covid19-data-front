@@ -1,4 +1,3 @@
-import axios from 'axios';
 <template>
   <div class="country-detail-container p-4">
     <div class="country-detail-container__info">
@@ -69,7 +68,7 @@ import axios from 'axios';
 
 <script>
 import axios from 'axios'
-import { URL_API_DEV } from '@/constants'
+import { URL_API } from '@/constants'
 import VueApexCharts from 'vue-apexcharts'
 
 export default {
@@ -118,12 +117,12 @@ export default {
     async loadData() {
       try {
         const response = await axios.get(
-          `${URL_API_DEV}countries/${this.countryId}`
+          `${URL_API}countries/${this.countryId}`
         )
         this.country = response.data.country
 
         const figuresResponse = await axios.get(
-          `${URL_API_DEV}figures/${this.countryId}`
+          `${URL_API}figures/${this.countryId}`
         )
         this.figuresCountry = figuresResponse.data.figures
 

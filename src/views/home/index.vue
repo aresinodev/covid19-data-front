@@ -15,7 +15,7 @@ import Browser from '@/views/home/components/browser'
 import CountryCardList from '@/views/home/components/country-card-list'
 import Loader from '@/components/ui/Loader'
 import axios from 'axios'
-import { URL_API_DEV } from '@/constants'
+import { URL_API } from '@/constants'
 
 export default {
   name: 'Home',
@@ -38,7 +38,7 @@ export default {
     async loadCountries() {
       this.loading = true
       try {
-        const response = await axios.get(`${URL_API_DEV}countries/all`)
+        const response = await axios.get(`${URL_API}countries/all`)
         this.countries = response.data.countries
         this.loading = false
       } catch (error) {
@@ -54,9 +54,7 @@ export default {
 
       if (value !== '') {
         try {
-          const response = await axios.get(
-            `${URL_API_DEV}countries/all/${value}`
-          )
+          const response = await axios.get(`${URL_API}countries/all/${value}`)
 
           console.log('Respuesta', response)
 

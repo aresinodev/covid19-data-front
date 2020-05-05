@@ -1,6 +1,5 @@
 import { ROUTES } from '@/constants/routes'
 
-const URL_API_PROD = 'https://covid19-restapi-me.herokuapp.com/'
-const URL_API_DEV = 'http://192.168.1.75:3000/'
+const URL_API = process.env.VUE_APP_URL_API
 
-export { ROUTES, URL_API_PROD, URL_API_DEV }
+export { ROUTES, URL_API }
