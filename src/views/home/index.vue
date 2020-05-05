@@ -31,6 +31,7 @@ export default {
     Loader
   },
   created() {
+    this.$store.commit('changeCurrentRoute', this.$router.currentRoute.name)
     this.loadCountries()
   },
   methods: {

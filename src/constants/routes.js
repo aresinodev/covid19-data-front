@@ -1,6 +1,10 @@
 export const ROUTES = {
   HOME: {
     path: '/',
-    name: 'Home'
+    name: 'home'
+  },
+  COUNTRY_DETAIL: {
+    path: '/country/:id',
+    name: 'countryDetail'
   }
 }

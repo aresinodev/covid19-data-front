@@ -1,14 +1,19 @@
 <template>
   <tr>
     <td class="border px-4 py-2">{{ country.name }}</td>
-    <td class="border px-4 py-2">
+    <td class="border">
       {{ country.totalConfirmed | formatNumber(null, false) }}
     </td>
-    <td class="border px-4 py-2">
+    <td class="border">
       {{ country.totalDeaths | formatNumber(null, false) }}
     </td>
-    <td class="border px-4 py-2">
+    <td class="border">
       {{ country.totalRecovered | formatNumber(null, false) }}
+    </td>
+    <td class="border">
+      <span class="detail-link" @click="goToDetail(country._id)">
+        <font-awesome-icon icon="eye" />
+      </span>
     </td>
   </tr>
 </template>
@@ -22,23 +27,16 @@ export default {
       required: true
     }
   },
-  filters: {
-    formatNumber: function(value, decimals, euro) {
-      if (value) {
-        const string = decimals ? value.toFixed(decimals) : value.toString()
-        const x = string.split('.')
-        let x1 = x[0]
-        const x2 = x.length > 1 ? ',' + x[1] : ''
-        const rgx = /(\d+)(\d{3})/
-        while (rgx.test(x1)) {
-          x1 = x1.replace(rgx, '$1' + '.' + '$2')
-        }
-
-        return x1 + (!decimals ? '' : x2) + (euro ? '€' : '')
-      } else {
-        return '0' + (!decimals ? '' : ',00') + (euro ? '€' : '')
-      }
+  methods: {
+    goToDetail(countryId) {
+      this.$router.push({ name: 'countryDetail', params: { id: countryId } })
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.detail-link {
+  cursor: pointer;
+}
+</style>

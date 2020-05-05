@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import { ROUTES } from '@/constants'
-import Home from '@/views/home'
 
 Vue.use(VueRouter)
 
@@ -9,7 +8,12 @@ const routes = [
   {
     path: ROUTES.HOME.path,
     name: ROUTES.HOME.name,
-    component: Home
+    component: () => import('@/views/home')
+  },
+  {
+    path: ROUTES.COUNTRY_DETAIL.path,
+    name: ROUTES.COUNTRY_DETAIL.name,
+    component: () => import('@/views/country-detail')
   }
 ]
 
