@@ -131,7 +131,7 @@ export default {
         )
 
         // Añadimos las fechas a las gráficas
-        this.chartConfig['xaxis']['categories'] = dates
+        this.chartConfig['xaxis']['categories'] = dates.reverse()
 
         this.refreshCategoriesXaxisChart(dates)
         this.loadChartsInfo()
@@ -149,9 +149,9 @@ export default {
       this.countryConfirmedChart = [
         {
           name: 'Confirmados',
-          data: this.figuresCountry.map(item =>
-            this.getFormattedNumber(item.totalConfirmed)
-          )
+          data: this.figuresCountry
+            .map(item => this.getFormattedNumber(item.totalConfirmed))
+            .reverse()
         }
       ]
 
@@ -159,9 +159,9 @@ export default {
       this.countryDeathsChart = [
         {
           name: 'Fallecidos',
-          data: this.figuresCountry.map(item =>
-            this.getFormattedNumber(item.totalDeaths)
-          )
+          data: this.figuresCountry
+            .map(item => this.getFormattedNumber(item.totalDeaths))
+            .reverse()
         }
       ]
 
@@ -169,9 +169,9 @@ export default {
       this.countryRecoveredChart = [
         {
           name: 'Recuperados',
-          data: this.figuresCountry.map(item =>
-            this.getFormattedNumber(item.totalRecovered)
-          )
+          data: this.figuresCountry
+            .map(item => this.getFormattedNumber(item.totalRecovered))
+            .reverse()
         }
       ]
     },
