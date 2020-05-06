@@ -3,7 +3,7 @@
     <Browser @searchCountriesByTerm="searchCountriesByTerm" />
     <Loader :loading="loading" />
     <CountryCardList :countries="countries" v-if="countries.length > 0" />
-    <span v-if="countries.length === 0" class="home__no-countries">
+    <span v-if="!loading && countries.length === 0" class="home__no-countries">
       No hay países
     </span>
   </div>
@@ -42,6 +42,7 @@ export default {
         this.countries = response.data.countries
         this.loading = false
       } catch (error) {
+        this.loading = false
         this.$swal({
           title: 'Error',
           icon: 'error',
